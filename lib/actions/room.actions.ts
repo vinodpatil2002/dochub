@@ -64,3 +64,12 @@ export const updateDocument = async (roomId: string, title: string) => {
         console.log(`Error happened while editing document: ${error}`);
     }
 };
+
+export const getDocuments = async (email:string) => {
+    try {
+        const room = await liveblocks.getRooms({userId: email});
+        return parseStringify(room);
+    } catch (error) {
+        console.log(`Error happened while getting rooms: ${error}`);
+    }
+};
