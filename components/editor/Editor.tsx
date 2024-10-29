@@ -11,7 +11,7 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import React from "react";
 import {
-  FloatingComposer,
+    FloatingComposer,
     FloatingThreads,
     liveblocksConfig,
     LiveblocksPlugin,
@@ -20,6 +20,7 @@ import {
 import Loader from "../Loader";
 import FloatingToolbarPlugin from "./plugins/FloatingToolbarPlugin";
 import { useThreads } from "@liveblocks/react/suspense";
+import Comments from "../Comments";
 
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
@@ -37,7 +38,7 @@ export function Editor({
     currentUserType: string;
 }) {
     const stat = useEditorStatus();
-    const {threads} = useThreads();
+    const { threads } = useThreads();
     const initialConfig = liveblocksConfig({
         namespace: "Editor",
         nodes: [HeadingNode],
@@ -76,9 +77,10 @@ export function Editor({
                             <AutoFocusPlugin />
                         </div>
                     )}
-                    <LiveblocksPlugin> 
-                      <FloatingComposer className="w-[350px]" />
-                      <FloatingThreads threads={threads} />
+                    <LiveblocksPlugin>
+                        <FloatingComposer className="w-[350px]" />
+                        <FloatingThreads threads={threads} />
+                        <Comments />
                     </LiveblocksPlugin>
                 </div>
             </div>
